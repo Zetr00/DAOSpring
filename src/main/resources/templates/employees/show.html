@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Детали сотрудника</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        .employee-info {
+            margin: 10px 0;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        form {
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        input[type="submit"] {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="employee-info">
+    <label>Идентификатор сотрудника:</label>
+    <p th:text="${employee.getId()}"></p>
+</div>
+
+<div class="employee-info">
+    <label>Имя:</label>
+    <p th:text="${employee.getName()}"></p>
+</div>
+
+<div class="employee-info">
+    <label>Должность:</label>
+    <p th:text="${employee.getPosition()}"></p>
+</div>
+
+<div class="employee-info">
+    <label>Зарплата:</label>
+    <p th:text="${employee.getSalary()}"></p>
+</div>
+
+<a th:href="@{/employees/{id}/edit(id=${employee.getId()})}">Редактировать</a>
+
+<form method="POST" th:method="DELETE" th:action="@{/employees/delete/{id}(id=${employee.getId()})}">
+    <input type="submit" value="УДАЛИТЬ">
+</form>
+
+</body>
+
+</html>

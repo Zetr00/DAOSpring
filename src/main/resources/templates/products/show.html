@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали товара</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        .product-info {
+            margin: 10px 0;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        form {
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        input[type="submit"] {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="product-info">
+    <label>Идентификатор товара:</label>
+    <p th:text="${product.getId()}"></p>
+</div>
+
+<div class="product-info">
+    <label>Название товара:</label>
+    <p th:text="${product.getProductName()}"></p>
+</div>
+
+<div class="product-info">
+    <label>Цена:</label>
+    <p th:text="${product.getPrice()}"></p>
+</div>
+
+<div class="product-info">
+    <label>Категория:</label>
+    <p th:text="${product.getCategory()}"></p>
+</div>
+
+<a th:href="@{/products/{id}/edit(id=${product.getId()})}">Редактировать</a>
+
+<form method="POST" th:method="DELETE" th:action="@{/products/delete/{id}(id=${product.getId()})}">
+    <input type="submit" value="УДАЛИТЬ">
+</form>
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование информации о сотруднике</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<form method="POST" th:method="PATCH" th:action="@{/employees/update/{id}(id=${employee.getId()})}" th:object="${employee}">
+    <label for="name">Имя:</label>
+    <input type="text" id="name" th:field="*{name}">
+
+    <label for="position">Должность:</label>
+    <input type="text" id="position" th:field="*{position}">
+
+    <label for="salary">Зарплата:</label>
+    <input type="text" id="salary" th:field="*{salary}">
+
+    <input type="submit" value="Обновить">
+</form>
+
+</body>
+</html>

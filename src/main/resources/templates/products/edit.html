@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование информации о товаре</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<form method="POST" th:method="PATCH" th:action="@{/products/update/{id}(id=${product.getId()})}" th:object="${product}">
+    <label for="productName">Название товара:</label>
+    <input type="text" id="productName" th:field="*{productName}">
+
+    <label for="price">Цена:</label>
+    <input type="text" id="price" th:field="*{price}">
+
+    <label for="category">Категория:</label>
+    <input type="text" id="category" th:field="*{category}">
+
+    <input type="submit" value="Обновить">
+</form>
+
+</body>
+</html>

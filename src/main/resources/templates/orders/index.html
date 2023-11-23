@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все заказы</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #444;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e0e0e0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        a.new-order-link {
+            display: block;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        a.new-order-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Список заказов</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Продукт ID</th>
+        <th>Количество</th>
+        <th>Общая стоимость</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order: ${orders}">
+        <td><a th:href="@{/orders/{id}(id=${order.getId()})}" th:text="${order.getProductId()}"></a></td>
+        <td><span th:text="${order.getQuantity()}"></span></td>
+        <td><span th:text="${order.getTotalPrice()}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+<a class="new-order-link" href="/orders/new">Добавить новый заказ</a>
+
+</body>
+</html>

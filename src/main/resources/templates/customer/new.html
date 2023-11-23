@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            background-color: #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<form th:method="POST" th:action="@{/customer}" th:object="${customer}">
+    <label for="firstName">Введите имя</label>
+    <input type="text" id="firstName" th:field="*{firstName}">
+
+    <label for="lastName">Введите фамилию</label>
+    <input type="text" id="lastName" th:field="*{lastName}">
+
+    <label for="address">Введите адрес</label>
+    <input type="text" id="address" th:field="*{address}">
+
+    <input type="submit" value="Create">
+</form>
+
+</body>
+
+</html>

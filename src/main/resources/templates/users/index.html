@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все пользователи</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #444;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e0e0e0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        a.new-user-link {
+            display: block;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        a.new-user-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Список пользователей</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Имя пользователя</th>
+        <th>Email</th>
+        <th>Пароль</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="us: ${users}">
+        <td><a th:href="@{/users/{id}(id=${us.getId()})}" th:text="${us.getUsername()}"></a></td>
+        <td><span th:text="${us.getEmail()}"></span></td>
+        <td><span th:text="${us.getPassword()}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+<a class="new-user-link" href="/users/new">Добавить нового пользователя</a>
+
+</body>
+</html>

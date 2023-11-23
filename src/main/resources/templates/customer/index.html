@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Все заказчики</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #444;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e0e0e0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        a.new-customer-link {
+            display: block;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        a.new-customer-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Список заказчиков</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Адрес</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cust: ${customer}">
+        <td><a th:href="@{/customer/{id}(id=${cust.getId()})}" th:text="${cust.getFirstName()}"></a></td>
+        <td><span th:text="${cust.getLastName()}"></span></td>
+        <td><span th:text="${cust.getAddress()}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+<a class="new-customer-link" href="/customer/new">Добавить нового заказчика</a>
+
+</body>
+
+</html>

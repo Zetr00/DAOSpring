@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали заказа</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        .order-info {
+            margin: 10px 0;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        form {
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        input[type="submit"] {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="order-info">
+    <label>Идентификатор заказа:</label>
+    <p th:text="${order.getId()}"></p>
+</div>
+
+<div class="order-info">
+    <label>Идентификатор продукта:</label>
+    <p th:text="${order.getProductId()}"></p>
+</div>
+
+<div class="order-info">
+    <label>Количество:</label>
+    <p th:text="${order.getQuantity()}"></p>
+</div>
+
+<div class="order-info">
+    <label>Итоговая цена:</label>
+    <p th:text="${order.getTotalPrice()}"></p>
+</div>
+
+<a th:href="@{/orders/{id}/edit(id=${order.getId()})}">Редактировать</a>
+
+<form method="POST" th:method="DELETE" th:action="@{/orders/delete/{id}(id=${order.getId()})}">
+    <input type="submit" value="УДАЛИТЬ">
+</form>
+
+</body>
+</html>
